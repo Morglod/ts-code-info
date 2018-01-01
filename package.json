@@ -15,5 +15,14 @@
   "repository": {
       "type": "git",
       "url": "https://github.com/Morglod/ts-code-info.git"
-  }
+  },
+  "keywords": [
+      "typescript",
+      "code",
+      "reflection",
+      "ast",
+      "walker",
+      "info",
+      "extracter"
+  ]
 }
