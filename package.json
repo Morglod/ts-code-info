@@ -1,0 +1,14 @@
+{
+  "name": "ts-code-info",
+  "version": "0.0.1",
+  "description": "TypeScript code info extractor",
+  "dependencies": {
+    "@types/node": "^8.5.2",
+    "typescript": "^2.6.2"
+  },
+  "main": "lib/index.js",
+  "author": {
+      "email": "morglod@gmail.com",
+      "name": "morgod"
+  }
+}
