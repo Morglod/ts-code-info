@@ -2,7 +2,7 @@
 
 Uses [TypeScript compiler api](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API) to extract type info.
 
-## Example
+## Example: Documentation
 
 ```ts
 import { parse } from './index';

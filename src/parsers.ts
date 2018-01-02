@@ -19,7 +19,10 @@ export function typeOfSymbol(symbol: ts.Symbol, opts: ParseOptions): types.TypeO
 }
 
 export function typeOfInfo(type: ts.Type, opts: ParseOptions): types.TypeOf {
-    return opts.checker.typeToString(type);
+    return {
+        text: opts.checker.typeToString(type, undefined, ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.UseFullyQualifiedType),
+        tsType: type
+    }
 }
 
 export function symbolInfo(symbol: ts.Symbol|undefined, opts: ParseOptions) {
@@ -72,13 +75,21 @@ export function parseSignature(signature: ts.Signature, opts: ParseOptions) {
 
 export function parseFunc(node: ts.FunctionDeclaration, opts: ParseOptions): types.Func {
     const symb = parseSymbol<ts.FunctionDeclaration>(node.name || node, opts);
-    // const type = symb.symbol ? opts.checker.getTypeOfSymbolAtLocation(symb.symbol, node);
-    // const callSignatures = type.getCallSignatures().map(sign => parseSignature(sign, opts));
+    let returnType: types.TypeOf|undefined = undefined;
+
+    if (symb.type) {
+        const callSignatures = symb.type.tsType.getCallSignatures();
+        if (callSignatures.length > 0) {
+            const callSignature = callSignatures[0];
+            const parsedSignature = parseSignature(callSignature, opts);
+            returnType = parsedSignature.returnType;
+        }
+    }
 
     return {
         ...symb,
         args: node.parameters.map(param => parseParameter(param, opts)),
-        returnType: '', // callSignatures[0].returnType,
+        returnType,
         bodyNode: node.body!
     };
 }

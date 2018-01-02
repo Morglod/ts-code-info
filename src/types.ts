@@ -40,7 +40,10 @@ export const ClassMemberModifiers: Modifier[] = [
 ];
 export type ClassMemberModifiersType = typeof ClassMemberModifiers[0];
 
-export type TypeOf = string
+export type TypeOf = {
+    text: string,
+    tsType: ts.Type
+}
 
 export type DeclInfo<DeclT extends ts.Node = ts.Node, ModifiersT extends Modifier = Modifier> = {
     symbol?: ts.Symbol,
@@ -57,7 +60,7 @@ export type Parameter = DeclInfo<ts.ParameterDeclaration> & {  }
 
 export type FuncInfo_ = {
     args: Parameter[],
-    returnType: TypeOf,
+    returnType?: TypeOf,
     bodyNode: ts.FunctionBody,
 };
 

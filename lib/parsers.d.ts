@@ -8,7 +8,7 @@ export declare function isNodeExported(node: ts.Node): boolean;
 export declare function typeOfSymbol(symbol: ts.Symbol, opts: ParseOptions): types.TypeOf;
 export declare function typeOfInfo(type: ts.Type, opts: ParseOptions): types.TypeOf;
 export declare function symbolInfo(symbol: ts.Symbol | undefined, opts: ParseOptions): {
-    type: string | undefined;
+    type: types.TypeOf | undefined;
     doc: string;
     name: string;
 };
@@ -17,11 +17,11 @@ export declare function parseVariable(node: ts.VariableDeclaration, opts: ParseO
 export declare function parseParameter(node: ts.ParameterDeclaration, opts: ParseOptions): types.Parameter;
 export declare function parseSignature(signature: ts.Signature, opts: ParseOptions): {
     parameters: {
-        type: string | undefined;
+        type: types.TypeOf | undefined;
         doc: string;
         name: string;
     }[];
-    returnType: string;
+    returnType: types.TypeOf;
     doc: string;
 };
 export declare function parseFunc(node: ts.FunctionDeclaration, opts: ParseOptions): types.Func;

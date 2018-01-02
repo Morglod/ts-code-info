@@ -19,7 +19,10 @@ export declare const ClassMethodModifiers: Modifier[];
 export declare type ClassMethodModifiersType = typeof ClassMethodModifiers[0];
 export declare const ClassMemberModifiers: Modifier[];
 export declare type ClassMemberModifiersType = typeof ClassMemberModifiers[0];
-export declare type TypeOf = string;
+export declare type TypeOf = {
+    text: string;
+    tsType: ts.Type;
+};
 export declare type DeclInfo<DeclT extends ts.Node = ts.Node, ModifiersT extends Modifier = Modifier> = {
     symbol?: ts.Symbol;
     identifier?: ts.Identifier;
@@ -33,7 +36,7 @@ export declare type DeclInfo<DeclT extends ts.Node = ts.Node, ModifiersT extends
 export declare type Parameter = DeclInfo<ts.ParameterDeclaration> & {};
 export declare type FuncInfo_ = {
     args: Parameter[];
-    returnType: TypeOf;
+    returnType?: TypeOf;
     bodyNode: ts.FunctionBody;
 };
 export declare type Func = DeclInfo<ts.FunctionDeclaration> & FuncInfo_;
