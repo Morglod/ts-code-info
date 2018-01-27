@@ -1,6 +1,6 @@
 {
   "name": "ts-code-info",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TypeScript code info extractor",
   "dependencies": {
     "@types/node": "^8.5.2",
